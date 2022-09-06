@@ -16,5 +16,14 @@ public class Application {
         log.error("Deployment failed!", res.cause());
       }
     });
+
+    Vertx vertx2 = Vertx.vertx();
+    vertx2.deployVerticle(new MainVerticle2(), res -> {
+      if(res.succeeded()){
+        log.info("Deployment id is: {}", res.result());
+      }else {
+        log.error("Deployment failed!", res.cause());
+      }
+    });
   }
 }
