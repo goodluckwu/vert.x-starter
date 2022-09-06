@@ -14,11 +14,13 @@ public class SenderVerticle extends AbstractVerticle {
     int port = 8888;
     vertx.createHttpServer().requestHandler(req -> {
       EventBus eventBus = vertx.eventBus();
-      eventBus.request("news.uk.sport", "Yay! Someone kicked a ball", ar -> {
-        if (ar.succeeded()) {
-          log.info("Reply message: {}", ar.result().body());
-        }
-      });
+//      eventBus.request("news.uk.sport", "Yay! Someone kicked a ball", ar -> {
+//        if (ar.succeeded()) {
+//          log.info("Reply message: {}", ar.result().body());
+//        }
+//      });
+//      eventBus.publish("news.uk.sport", "Yay! Someone kicked a ball");
+      eventBus.send("news.uk.sport", "Yay! Someone kicked a ball");
       req.response()
         .putHeader("content-type", "text/plain")
         .end("Sender had send the message!");
