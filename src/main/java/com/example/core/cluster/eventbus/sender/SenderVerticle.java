@@ -12,8 +12,9 @@ public class SenderVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     int port = 8888;
+    EventBus eventBus = vertx.eventBus();
+    log.info("eventbus in verticle: {}", eventBus);
     vertx.createHttpServer().requestHandler(req -> {
-      EventBus eventBus = vertx.eventBus();
 //      eventBus.request("news.uk.sport", "Yay! Someone kicked a ball", ar -> {
 //        if (ar.succeeded()) {
 //          log.info("Reply message: {}", ar.result().body());

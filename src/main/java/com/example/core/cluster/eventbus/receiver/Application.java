@@ -13,6 +13,7 @@ public class Application {
     Vertx.clusteredVertx(new VertxOptions(), res -> {
       if(res.succeeded()){
         Vertx vertx = res.result();
+        log.info("eventbus in clusteredVertx: {}", vertx.eventBus());
         vertx.deployVerticle(ReceiverVerticle.class, new DeploymentOptions().setInstances(5), deployRes -> {
           if(deployRes.succeeded()){
             log.info("Deployment id is: {}", deployRes.result());

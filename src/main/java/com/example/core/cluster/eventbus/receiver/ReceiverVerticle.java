@@ -12,6 +12,7 @@ public class ReceiverVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     EventBus eventBus = vertx.eventBus();
+    log.info("eventbus in verticle: {}", eventBus);
     eventBus.consumer("news.uk.sport", message -> {
       log.info("I have received a message: {}", message.body());
       message.reply("how interesting!");
