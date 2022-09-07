@@ -1,4 +1,4 @@
-package com.example.core.cluster.eventbus.sender;
+package com.example.core.eventbus.sender;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -22,6 +22,7 @@ public class SenderVerticle extends AbstractVerticle {
 //      });
 //      eventBus.publish("news.uk.sport", "Yay! Someone kicked a ball");
       eventBus.send("news.uk.sport", "Yay! Someone kicked a ball");
+      eventBus.send("news.uk.sport.local", "Yay! Someone kicked a ball local");
       req.response()
         .putHeader("content-type", "text/plain")
         .end("Sender had send the message!");

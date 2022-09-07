@@ -1,4 +1,4 @@
-package com.example.core.cluster.eventbus.receiver;
+package com.example.core.eventbus.sender;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -14,7 +14,16 @@ public class Application {
       if(res.succeeded()){
         Vertx vertx = res.result();
         log.info("eventbus in clusteredVertx: {}", vertx.eventBus());
-        vertx.deployVerticle(ReceiverVerticle.class, new DeploymentOptions().setInstances(5), deployRes -> {
+        vertx.deployVerticle(SenderVerticle.class, new DeploymentOptions().setInstances(1), deployRes -> {
+          if(deployRes.succeeded()){
+            log.info("Deployment id is: {}", deployRes.result());
+          }else {
+            log.error("Deployment failed!", deployRes.cause());
+            throw new IllegalStateException(deployRes.cause());
+          }
+        });
+
+        vertx.deployVerticle(LocalReceiverVerticle.class, new DeploymentOptions().setInstances(1), deployRes -> {
           if(deployRes.succeeded()){
             log.info("Deployment id is: {}", deployRes.result());
           }else {

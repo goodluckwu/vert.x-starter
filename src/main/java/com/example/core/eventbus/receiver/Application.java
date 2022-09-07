@@ -1,4 +1,4 @@
-package com.example.core.cluster.eventbus.sender;
+package com.example.core.eventbus.receiver;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -14,7 +14,7 @@ public class Application {
       if(res.succeeded()){
         Vertx vertx = res.result();
         log.info("eventbus in clusteredVertx: {}", vertx.eventBus());
-        vertx.deployVerticle(SenderVerticle.class, new DeploymentOptions().setInstances(1), deployRes -> {
+        vertx.deployVerticle(ReceiverVerticle.class, new DeploymentOptions().setInstances(5), deployRes -> {
           if(deployRes.succeeded()){
             log.info("Deployment id is: {}", deployRes.result());
           }else {

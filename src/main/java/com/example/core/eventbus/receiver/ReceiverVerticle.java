@@ -1,4 +1,4 @@
-package com.example.core.cluster.eventbus.receiver;
+package com.example.core.eventbus.receiver;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -25,6 +25,11 @@ public class ReceiverVerticle extends AbstractVerticle {
         log.error("Registration failed!");
         startPromise.fail(res.cause());
       }
+    });
+
+    eventBus.localConsumer("news.uk.sport.local", message -> {
+      log.info("I have received a message: {}", message.body());
+      message.reply("how interesting!");
     });
   }
 }
