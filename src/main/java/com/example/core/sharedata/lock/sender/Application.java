@@ -1,4 +1,4 @@
-package com.example.core.sharedata.lock.cluster.receiver;
+package com.example.core.sharedata.lock.sender;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -13,7 +13,7 @@ public class Application {
     Vertx.clusteredVertx(new VertxOptions(), res -> {
       if(res.succeeded()){
         Vertx vertx = res.result();
-        vertx.deployVerticle(ReceiverVerticle.class, new DeploymentOptions().setInstances(5), deployRes -> {
+        vertx.deployVerticle(SenderVerticle.class, new DeploymentOptions().setInstances(1), deployRes -> {
           if(deployRes.succeeded()){
             log.info("Deployment id is: {}", deployRes.result());
           }else {

@@ -1,4 +1,4 @@
-package com.example.core.sharedata.lock.cluster.receiver;
+package com.example.core.sharedata.lock.receiver;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
