@@ -20,9 +20,12 @@ public class ErrorHandlingVerticle extends AbstractVerticle {
       String num1 = ctx.pathParam("num1");
       String num2 = ctx.pathParam("num2");
       ctx.response().end(String.format("%s / %s = %s", num1, num2, Integer.parseInt(num1) / Integer.parseInt(num2)));
-    }).failureHandler(ctx -> {
+    });
+
+    router.get("/error/*").failureHandler(ctx -> {
+      Throwable failure = ctx.failure();
       int statusCode = ctx.statusCode();
-      log.error("statusCode: {}", statusCode);
+      log.error("statusCode: {}", statusCode, failure);
       ctx.response().setStatusCode(statusCode).end("error");
     });
 
