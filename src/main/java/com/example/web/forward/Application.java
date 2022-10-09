@@ -1,4 +1,4 @@
-package com.example.web.helloworld;
+package com.example.web.forward;
 
 import io.vertx.core.Vertx;
 import org.slf4j.Logger;
@@ -9,11 +9,11 @@ public class Application {
 
   public static void main(String[] args) {
     Vertx vertx = Vertx.vertx();
-    vertx.deployVerticle(new HttpVerticle(), res -> {
+    vertx.deployVerticle(new ForwardVerticle(), res -> {
       if(res.succeeded()){
-        log.info("Deployment id is: {}", res.result());
-      }else {
-        log.error("Deployment failed!", res.cause());
+        log.info("deploy successfully, id: {}", res.result());
+      } else {
+        log.error("deploy failed", res.cause());
       }
     });
   }

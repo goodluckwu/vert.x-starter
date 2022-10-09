@@ -1,17 +1,14 @@
 package com.example.web.fileupload;
 
+import java.util.List;
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.MultiMap;
 import io.vertx.core.Promise;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.FileUpload;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.LoggerHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class FileUploadVerticle extends AbstractVerticle {
   private static final Logger log = LoggerFactory.getLogger(FileUploadVerticle.class);

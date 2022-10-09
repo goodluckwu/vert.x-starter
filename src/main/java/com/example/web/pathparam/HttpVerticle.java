@@ -1,9 +1,7 @@
 package com.example.web.pathparam;
 
-import java.util.concurrent.TimeUnit;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
-import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import org.slf4j.Logger;

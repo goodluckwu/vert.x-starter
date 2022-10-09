@@ -1,6 +1,5 @@
 package com.example.web.validation;
 
-import com.example.web.errorhandling.ErrorHandlingVerticle;
 import io.vertx.core.Vertx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

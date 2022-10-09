@@ -1,6 +1,5 @@
 package com.example.web.helloworld;
 
-import com.hazelcast.client.impl.protocol.task.cache.CacheClearMessageTask;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
