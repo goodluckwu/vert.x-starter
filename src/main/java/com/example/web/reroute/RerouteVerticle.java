@@ -21,10 +21,8 @@ public class RerouteVerticle extends AbstractVerticle {
 
     router.get("/some/path").handler(ctx -> ctx.reroute("/some/path/b"));
 
-    router.get("/my-pretty-notfound-handler").handler(ctx -> ctx.response().setStatusCode(4044).end("not found"));
-    router.errorHandler(404, ctx -> {
-      ctx.reroute("/my-pretty-notfound-handler");
-    });
+    router.get("/my-pretty-notfound-handler").handler(ctx -> ctx.response().setStatusCode(4044).end(ctx.get("foo") + ", not found"));
+    router.errorHandler(404, ctx -> ctx.put("foo", "bar").reroute("/my-pretty-notfound-handler"));
 
     vertx.createHttpServer().requestHandler(router).listen(8080, res -> {
       if(res.succeeded()){
