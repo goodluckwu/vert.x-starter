@@ -11,12 +11,14 @@ public class LocalSessionVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     Router router = Router.router(vertx);
-    router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)).setCookieless(true));
+    SessionHandler sessionHandler = SessionHandler.create(LocalSessionStore.create(vertx));
+    router.route().handler(sessionHandler.setCookieless(true));
 
     router.get("/session").handler(ctx -> {
       Session session = ctx.session();
       System.out.printf("%s%n", session.data());
       session.put("foo", "bar");
+      sessionHandler.flush(ctx);
       ctx.end(ctx.session().value());
     });
 
